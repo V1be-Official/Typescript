@@ -13,27 +13,24 @@ class Product {
     getName = ():string => this.name;
 
 }
+
 class Apple extends Product {
     constructor(scale:number) {
         super('Apple', scale);
     }
 }
+
 class Tomato extends Product {
     constructor(scale:number) {
         super('Tomato', scale);
     }
 }
 
-
 class Scales {
 
     private nameList:Array<string> = [];
     private sumScale:number = 0;
     private products:Array<Product> = [];
-
-    constructor() {
-
-    }
 
     addProduct = (product:Product):void => {
         this.products.push(product);
@@ -44,7 +41,6 @@ class Scales {
     getSumScales = ():number => this.sumScale;
 
     getNameList = ():Array<string> => this.nameList;
-
 }
 
 const scales:Scales = new Scales;
