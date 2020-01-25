@@ -28,19 +28,21 @@ class Tomato extends Product {
 
 class Scales {
 
-    private nameList:Array<string> = [];
-    private sumScale:number = 0;
     private products:Array<Product> = [];
 
     addProduct = (product:Product):void => {
         this.products.push(product);
-        this.nameList.push(product.getName());
-        this.sumScale += product.getScale();
     };
 
-    getSumScales = ():number => this.sumScale;
+    getSumScales():number {
+        const sum:number = this.products.reduce((sum:number, product:Product) => sum + product.getScale(),0);
+        return sum;
+    }
 
-    getNameList = ():Array<string> => this.nameList;
+    getNameList():Array<string> {
+        const products:Array<string> = this.products.map((product:Product) => product.getName());
+        return products;
+    };
 }
 
 const scales:Scales = new Scales;

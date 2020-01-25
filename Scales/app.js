@@ -38,17 +38,20 @@ var Tomato = /** @class */ (function (_super) {
 var Scales = /** @class */ (function () {
     function Scales() {
         var _this = this;
-        this.nameList = [];
-        this.sumScale = 0;
         this.products = [];
         this.addProduct = function (product) {
             _this.products.push(product);
-            _this.nameList.push(product.getName());
-            _this.sumScale += product.getScale();
         };
-        this.getSumScales = function () { return _this.sumScale; };
-        this.getNameList = function () { return _this.nameList; };
     }
+    Scales.prototype.getSumScales = function () {
+        var sum = this.products.reduce(function (sum, product) { return sum + product.getScale(); }, 0);
+        return sum;
+    };
+    Scales.prototype.getNameList = function () {
+        var products = this.products.map(function (product) { return product.getName(); });
+        return products;
+    };
+    ;
     return Scales;
 }());
 var scales = new Scales;
