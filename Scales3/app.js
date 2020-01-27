@@ -20,6 +20,9 @@ var Scales = /** @class */ (function () {
         }
         return sum;
     };
+    Scales.prototype.addProduct = function (product) {
+        this.scales.addItem(product);
+    };
     Scales.prototype.getNameList = function () {
         var count = this.scales.getCount();
         var nameList = [];
@@ -55,11 +58,11 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         this.getStore();
     }
     ScalesStorageEngineLocalStorage.prototype.updateStore = function () {
-        var items = this.products.map(function (product) { return ({
-            name: product.getName(),
-            scale: product.getScale()
-        }); });
-        localStorage.setItem(this.TOKEN, JSON.stringify(items));
+        localStorage.setItem(this.TOKEN, JSON.stringify(this.products));
+    };
+    ScalesStorageEngineLocalStorage.prototype.createStore = function () {
+        this.products = [];
+        this.updateStore();
     };
     ScalesStorageEngineLocalStorage.prototype.getStore = function () {
         var items = JSON.parse(localStorage.getItem(this.TOKEN));
@@ -69,10 +72,6 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         else {
             this.products = items.map(function (item) { return (new Product(item.name, item.scale)); });
         }
-    };
-    ScalesStorageEngineLocalStorage.prototype.createStore = function () {
-        this.products = [];
-        this.updateStore();
     };
     ScalesStorageEngineLocalStorage.prototype.addItem = function (product) {
         this.products.push(product);
@@ -89,18 +88,32 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     return ScalesStorageEngineLocalStorage;
 }());
-var scalesArray = new ScalesStorageEngineArray();
-var scalesLocalStorage = new ScalesStorageEngineLocalStorage('821812');
-scalesArray.addItem(new Product('Apple', 10));
-scalesArray.addItem(new Product('Tomato', 20));
-scalesArray.addItem(new Product('Cucumber', 30));
-scalesLocalStorage.addItem(new Product('Apple', 15));
-scalesLocalStorage.addItem(new Product('Tomato', 19));
-scalesLocalStorage.addItem(new Product('Cucumber', 3));
-var mainScalesArray = new Scales(scalesArray);
-var mainScalesLocalStorage = new Scales(scalesLocalStorage);
-console.log('mainScalesArray - getSumScales :: ', mainScalesArray.getSumScales());
-console.log('mainScalesArray - getNameList :: ', mainScalesArray.getNameList());
-console.log('mainScalesLocalStorage - getSumScales :: ', mainScalesLocalStorage.getSumScales());
-console.log('mainScalesLocalStorage - getNameList :: ', mainScalesLocalStorage.getNameList());
+var scalesArray1 = new ScalesStorageEngineArray();
+var scalesArray2 = new ScalesStorageEngineArray();
+var scalesLocalStorage1 = new ScalesStorageEngineLocalStorage('jsDSJ12jd928D');
+var scalesLocalStorage2 = new ScalesStorageEngineLocalStorage('PSkdm17a83aSD');
+var scales1 = new Scales(scalesArray1);
+var scales2 = new Scales(scalesArray2);
+var scales3 = new Scales(scalesLocalStorage1);
+var scales4 = new Scales(scalesLocalStorage2);
+scales1.addProduct(new Product('Apple', 10));
+scales1.addProduct(new Product('Tomato', 20));
+scales1.addProduct(new Product('Cucumber', 30));
+scales2.addProduct(new Product('Apple', 1));
+scales2.addProduct(new Product('Tomato', 2));
+scales2.addProduct(new Product('Cucumber', 3));
+scales3.addProduct(new Product('Apple', 5));
+scales3.addProduct(new Product('Tomato', 10));
+scales3.addProduct(new Product('Cucumber', 10));
+scales4.addProduct(new Product('Apple', 2));
+scales4.addProduct(new Product('Tomato', 2));
+scales4.addProduct(new Product('Cucumber', 3));
+console.log('scalesArray1 - getSumScales :: ', scales1.getSumScales());
+console.log('scalesArray1 - getNameList :: ', scales1.getNameList());
+console.log('scalesArray2 - getSumScales :: ', scales2.getSumScales());
+console.log('scalesArray2 - getNameList :: ', scales2.getNameList());
+console.log('scalesLocalStorage1 - getSumScales :: ', scales3.getSumScales());
+console.log('scalesLocalStorage1 - getNameList :: ', scales3.getNameList());
+console.log('scalesLocalStorage2 - getSumScales :: ', scales4.getSumScales());
+console.log('scalesLocalStorage2 - getNameList :: ', scales4.getNameList());
 //# sourceMappingURL=app.js.map

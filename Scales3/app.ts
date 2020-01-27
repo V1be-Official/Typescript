@@ -128,25 +128,46 @@ class ScalesStorageEngineLocalStorage  implements IStorageEngine {
 
 }
 
-const scalesArray = new ScalesStorageEngineArray();
+const scalesArray1 = new ScalesStorageEngineArray();
+const scalesArray2 = new ScalesStorageEngineArray();
 
-const scalesLocalStorage = new ScalesStorageEngineLocalStorage('821812');
+const scalesLocalStorage1 = new ScalesStorageEngineLocalStorage('jsDSJ12jd928D');
+const scalesLocalStorage2 = new ScalesStorageEngineLocalStorage('PSkdm17a83aSD');
 
-const scales1 = new Scales<ScalesStorageEngineArray>(scalesArray);
-const scales2 = new Scales<ScalesStorageEngineLocalStorage>(scalesLocalStorage);
+const scales1 = new Scales<ScalesStorageEngineArray>(scalesArray1);
+const scales2 = new Scales<ScalesStorageEngineArray>(scalesArray2);
+
+const scales3 = new Scales<ScalesStorageEngineLocalStorage>(scalesLocalStorage1);
+const scales4 = new Scales<ScalesStorageEngineLocalStorage>(scalesLocalStorage2);
+
+
 
 scales1.addProduct(new Product('Apple', 10));
 scales1.addProduct(new Product('Tomato', 20));
 scales1.addProduct(new Product('Cucumber', 30));
 
-scales2.addProduct(new Product('Apple', 15));
-scales2.addProduct(new Product('Tomato', 19));
+scales2.addProduct(new Product('Apple', 1));
+scales2.addProduct(new Product('Tomato', 2));
 scales2.addProduct(new Product('Cucumber', 3));
 
+scales3.addProduct(new Product('Apple', 5));
+scales3.addProduct(new Product('Tomato', 10));
+scales3.addProduct(new Product('Cucumber', 10));
+
+scales4.addProduct(new Product('Apple', 2));
+scales4.addProduct(new Product('Tomato', 2));
+scales4.addProduct(new Product('Cucumber', 3));
 
 
-console.log('scalesArray - getSumScales :: ', scales1.getSumScales());
-console.log('scalesArray - getNameList :: ', scales1.getNameList());
 
-console.log('scalesLocalStorage - getSumScales :: ', scales2.getSumScales());
-console.log('scalesLocalStorage - getNameList :: ', scales2.getNameList());
+console.log('scalesArray1 - getSumScales :: ', scales1.getSumScales());
+console.log('scalesArray1 - getNameList :: ', scales1.getNameList());
+
+console.log('scalesArray2 - getSumScales :: ', scales2.getSumScales());
+console.log('scalesArray2 - getNameList :: ', scales2.getNameList());
+
+console.log('scalesLocalStorage1 - getSumScales :: ', scales3.getSumScales());
+console.log('scalesLocalStorage1 - getNameList :: ', scales3.getNameList());
+
+console.log('scalesLocalStorage2 - getSumScales :: ', scales4.getSumScales());
+console.log('scalesLocalStorage2 - getNameList :: ', scales4.getNameList());
